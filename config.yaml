@@ -1,0 +1,56 @@
+settings:
+  num_classes: 10
+  batch_size: 32
+  num_workers: 1
+  epochs: 30
+  save_dir: "./outputs"
+  image_size: 224
+  normalize:
+    mean: [0.5, 0.5, 0.5]
+    std:  [0.5, 0.5, 0.5]
+  early_stopping_patience: 10
+
+models:
+  resnet50:
+    model_name: "resnet50"         # model_map에서 ResNet50 클래스와 연결됨
+    backbone_type: "resnet"
+    checkpoint_path : False
+    learning_rate: 0.001
+    optimizer: "adam"             # optimizer_map에서 torch.optim.Adam과 연결됨
+    scheduler:
+      name: "CosineAnnealingLR"
+      T_max: 100
+
+  resnet50_pretrained:
+    model_name: "resnet50"
+    pretrained: true
+    backbone_type: "resnet"
+    learning_rate: 0.0005
+    optimizer: "adamw"
+    scheduler:
+      name: "StepLR"
+      step_size: 30
+      gamma: 0.1
+
+  vit_small:
+    patch_size : 16
+    in_channels : 3
+    model_name: "vit_small_patch16_224"   # model_map에서 ViTS16과 연결됨
+    backbone_type: "vit"
+    learning_rate: 0.0001
+    optimizer: "sgd"
+    scheduler:
+      name: "CosineAnnealingLR"
+      T_max: 100
+
+  vit_small_pretrained:
+    patch_size : 16
+    in_channels : 3
+    model_name: "vit_small_patch16_224"   # model_map에서 ViTS16과 연결됨
+    pretrained: true
+    backbone_type: "vit"
+    learning_rate: 0.0001
+    optimizer: "sgd"
+    scheduler:
+      name: "CosineAnnealingLR"
+      T_max: 100
