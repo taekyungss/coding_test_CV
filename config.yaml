@@ -12,11 +12,11 @@ settings:
 
 models:
   resnet50:
-    model_name: "resnet50"         # model_map에서 ResNet50 클래스와 연결됨
+    model_name: "resnet50"        
     backbone_type: "resnet"
     checkpoint_path : False
     learning_rate: 0.001
-    optimizer: "adam"             # optimizer_map에서 torch.optim.Adam과 연결됨
+    optimizer: "adam"             
     scheduler:
       name: "CosineAnnealingLR"
       T_max: 100
@@ -35,7 +35,7 @@ models:
   vit_small:
     patch_size : 16
     in_channels : 3
-    model_name: "vit_small_patch16_224"   # model_map에서 ViTS16과 연결됨
+    model_name: "vit_small_patch16_224"   
     backbone_type: "vit"
     learning_rate: 0.0001
     optimizer: "sgd"
